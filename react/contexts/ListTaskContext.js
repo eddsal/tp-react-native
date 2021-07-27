@@ -6,13 +6,17 @@ import {
   } from "react";
 
 
+  import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
   export const ListTaskContext = createContext();
 
 
   export default function ListTaskProvider({ children }) {
 
     const getTasks = () => {
-        const tasks = localStorage.getItem('tasks') || [];
+        const tasks = AsyncStorage.getItem('tasks') || [];
         return tasks;
     };
 
@@ -22,7 +26,7 @@ import {
     const addTask = useCallback(
         async (item) => {
             setTasks([...tasks, item]);
-          localStorage.setItem('tasks', JSON.stringify([...tasks, item]));
+          AsyncStorage.setItem('tasks', JSON.stringify([...tasks, item]));
         },
         [tasks]
       );
@@ -30,7 +34,7 @@ import {
     const deleteTask = useCallback(
         async (item) => {
             setTasks(tasks.filter((task) => task.id !== item.id));
-            localStorage.setItem('tasks', JSON.stringify([...tasks, item]));
+            AsyncStorage.setItem('tasks', JSON.stringify([...tasks, item]));
         },
     [tasks]
     );
@@ -38,7 +42,7 @@ import {
     const editTask = useCallback(
         async (item) => {
             setTasks(tasks.map((task) => (task.id !== item.id ? _it : item)));
-            localStorage.set("tasks", JSON.stringify([...tasks, item]))
+            AsyncStorage.set("tasks", JSON.stringify([...tasks, item]))
         },
         [tasks]
       );
