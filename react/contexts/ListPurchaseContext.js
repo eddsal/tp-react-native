@@ -1,8 +1,10 @@
-import {
+import
+React,
+{
     createContext,
     useState,
     useCallback,
-    useEffect
+  useEffect,
   } from "react";
 
 
@@ -48,7 +50,7 @@ import {
 
 
   return (
-    <ListPurchase.Provider
+    <ListPurchaseContext.Provider
       value={{
         purchases,
         addPurchase,
@@ -57,7 +59,7 @@ import {
       }}
     >
       {children}
-    </ListPurchase.Provider>
+    </ListPurchaseContext.Provider>
   );
 
   }
