@@ -22,6 +22,7 @@ export default function List({items}) {
         {purchases.map(item => (
             <View>
                 {item.name}
+                {item.status}
             </View>
         ))}
             </View>
