@@ -6,9 +6,10 @@
  * @flow strict-local
  */
 
- import React from 'react';
+import React, { useContext } from 'react';
+import Home from './react/pages/Home'
 
- import Home from './react/pages/Home';
+
 
  import {
    SafeAreaView,
@@ -26,7 +27,9 @@
    Header,
    LearnMoreLinks,
    ReloadInstructions,
- } from 'react-native/Libraries/NewAppScreen';
+} from 'react-native/Libraries/NewAppScreen';
+ 
+
  
  
  const App = () => {
@@ -44,7 +47,7 @@
          style={backgroundStyle}>
          <Header />
          <View>
-           <Home/>
+           <Home />
          </View>
        </ScrollView>
      </SafeAreaView>

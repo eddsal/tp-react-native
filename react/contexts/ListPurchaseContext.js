@@ -14,15 +14,21 @@ React,
   export const ListPurchaseContext = createContext();
 
 
+
+
   export default function ListPurchaseProvider({ children }) {
 
     const getPurchases = () => {
-        const purchases = AsyncStorage.getItem('purchases') || [];
+        const purchases = AsyncStorage.getItem('purchases');
         return purchases;
     };
-    const [ purchases, setPurchases ] = useState(getPurchases);
-
-
+    const [purchases, setPurchases] = useState([]);
+    useEffect(() => {
+      getPurchases().then(data => {
+        setPurchases(data || [])
+      })
+    }, [])
+    
 
   const addPurchase = useCallback(
     async (item) => {
