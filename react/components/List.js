@@ -33,6 +33,6 @@ export default function List({onEdit}) {
     //   onEndReachedThreshold={0.7}
     //   onEndReached={() => fetchList({page: page + 1})}
     // />
-    <Text>ciao</Text>
+    <Text>Test</Text>
   );
 }
