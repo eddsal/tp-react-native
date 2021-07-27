@@ -12,8 +12,8 @@ import {
   export default function ListPurchaseProvider({ children }) {
 
     const getPurchases = () => {
-        const Purchases = localStorage.getItem('Purchases') || [];
-        return Purchases;
+        const purchases = localStorage.getItem('purchases') || [];
+        return purchases;
     };
     const [ purchases, setPurchases ] = useState(getPurchases);
 
@@ -22,11 +22,40 @@ import {
   const addPurchase = useCallback(
     async (item) => {
      setPurchases([...purchases, item]);
-      localStorage.setItem('panier', JSON.stringify(panier));
+      localStorage.setItem('purchases', JSON.stringify([...purchases, item]));
     },
-    [panier]
+    [purchases]
   );
 
+  const deletePurchase = useCallback(
+    async (item) => {
+      setPurchases(purchases.filter((purchase) => purchase.id !== item.id));
+      localStorage.setItem('purchases', JSON.stringify([...purchases, item]));
+    },
+    [purchases]
+  );
+
+  const editPurchase = useCallback(
+    async (item) => {
+      setPurchases(purchases.map((purchase) => (purchase.id !== item.id ? _it : item)));
+      localStorage.set("list", JSON.stringify([...purchases, item]))
+    },
+    [purchases]
+  );
+
+
+  return (
+    <ListPurchase.Provider
+      value={{
+        purchases,
+        addPurchase,
+        deletePurchase,
+        editPurchase
+      }}
+    >
+      {children}
+    </ListPurchase.Provider>
+  );
 
   }
 
