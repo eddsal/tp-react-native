@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
 
-export default function Form({onSubmit, selectedValue}) {
+export default function FormPurchase({onSubmit, selectedValue}) {
   const [values, setValues] = useState(
     selectedValue === true
       ? {
-          code: '',
-          message: '',
-          description: '',
+          name: '',
+          status: '',
         }
       : selectedValue,
   );
@@ -32,40 +31,40 @@ export default function Form({onSubmit, selectedValue}) {
   return (
     <View onSubmit={_onSubmit}>
       <TextInput
-        label="Code"
+        label="Name"
         onChangeText={value =>
           handleChange({
             target: {
-              name: 'code',
+              name: 'name',
               value,
             },
           })
         }
-        value={values.code}
+        value={values.name}
       />
       <TextInput
-        label="Message"
+        label="Status"
         onChangeText={value =>
           handleChange({
             target: {
-              name: 'message',
+              name: 'status',
               value,
             },
           })
         }
-        value={values.message}
+        value={values.status}
       />
       <TextInput
-        label="Description"
+        label="date"
         onChangeText={value =>
           handleChange({
             target: {
-              name: 'description',
+              name: 'date',
               value,
             },
           })
         }
-        value={values.description}
+        value={values.date}
       />
       <Button onPress={_onSubmit}>Submit</Button>
     </View>
